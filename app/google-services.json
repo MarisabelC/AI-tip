@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "548706039072",
+    "firebase_url": "https://aitip-80b9f.firebaseio.com",
+    "project_id": "aitip-80b9f",
+    "storage_bucket": "aitip-80b9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548706039072:android:c2e8aebef018fb2bdd5345",
+        "android_client_info": {
+          "package_name": "com.example.screenshotapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548706039072-dj6kios5pmj10dimfns3l23a8gok1hl6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZjLH2pY6rUOdI6ddrxq-rHSQT5qUfE6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548706039072-dj6kios5pmj10dimfns3l23a8gok1hl6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
