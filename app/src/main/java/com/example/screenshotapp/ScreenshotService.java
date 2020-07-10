@@ -34,10 +34,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.Surface;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -220,6 +218,7 @@ public class ScreenshotService extends Service implements View.OnClickListener{
         if (stepView != null)
             mWindowManager.removeView(stepView);
         stopCapture();
+        imageTrans.close();
 
     }
 
@@ -272,6 +271,7 @@ public class ScreenshotService extends Service implements View.OnClickListener{
     void processImage(final byte[] png) {
         beeper.startTone(ToneGenerator.TONE_PROP_ACK);
         stopCapture();
+
     }
 
     private void stopCapture() {
@@ -356,7 +356,6 @@ public class ScreenshotService extends Service implements View.OnClickListener{
         private final ImageReader imageReader;
         private final ScreenshotService svc;
         private Bitmap latestBitmap=null;
-        Map<String, Coordinates> words= new HashMap<>();
 
 
         ImageTransmogrifier(ScreenshotService svc) {

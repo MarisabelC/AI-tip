@@ -25,22 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ScreenshotActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.DeviceDefault"
-            android:excludeFromRecents="true"
-            android:screenOrientation="portrait">
-        </activity>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
         <service
             android:name=".ScreenshotService"
-            android:exported="true"
-            android:foregroundServiceType="mediaProjection"/>
-        <service
-            android:name=".FloatingWidgetService"
             android:exported="true"
             android:foregroundServiceType="mediaProjection"/>
 
