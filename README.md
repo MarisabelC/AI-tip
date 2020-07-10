@@ -1,10 +1,11 @@
 1 -  In AndroidManifest.xml
 -  Add Android permission :
 
-android.permission.READ_EXTERNAL_STORAGE (Media Projection - screenshot)
-android.permission.WRITE_EXTERNAL_STORAGE (Media Projection - screenshot)
-android.permission.SYSTEM_ALERT_WINDOW (floating widget " overlay")
-android.permission.FOREGROUND_SERVICE (Media Projection - screenshot)
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> //(Media Projection - screenshot)
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> //(Media Projection - screenshot)
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> //(floating widget " overlay")
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> //(Media Projection - screenshot)
+
 
 Inside of application block
 
