@@ -12,13 +12,11 @@ import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.AudioManager;
 import android.media.Image;
 import android.media.ImageReader;
-import android.media.MediaScannerConnection;
 import android.media.ToneGenerator;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
@@ -28,7 +26,6 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,14 +49,12 @@ import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class ScreenshotService extends Service implements View.OnClickListener{
 
     private WindowManager mWindowManager;
     private View infoView;
-
 
     private static final String CHANNEL_WHATEVER="channel_whatever";
     private static final int NOTIFY_ID=9906;
@@ -90,15 +85,13 @@ public class ScreenshotService extends Service implements View.OnClickListener{
     private View stepView;
     private View stepCollapsedView;
     private View stepExpandedView;
+
     final WindowManager.LayoutParams stepIconParams = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT);
-
-
-
 
     @Override
     public void onCreate() {
@@ -110,17 +103,15 @@ public class ScreenshotService extends Service implements View.OnClickListener{
         handlerThread.start();
         handler=new Handler(handlerThread.getLooper());
         final Context context = this;
+
+        //====================================info (screenshot) icon ==================================================
         infoView = LayoutInflater.from(context).inflate(R.layout.screenshot_layout, null);
-        stepView = LayoutInflater.from(this).inflate(R.layout.floating_widget_layout, null);
-        stepCollapsedView = stepView.findViewById(R.id.layoutCollapsed);
-        stepExpandedView = stepView.findViewById(R.id.layoutExpanded);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
 
-        //info icon
         WindowManager.LayoutParams infoIconParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -133,18 +124,20 @@ public class ScreenshotService extends Service implements View.OnClickListener{
         infoIconParams.x = width -100;
         infoIconParams.y = height-300;
 
-        stepIconParams.gravity = Gravity.TOP | Gravity.LEFT;
-
-        //Add the view to the window
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(infoView, infoIconParams);
-
-
 
         //adding click listener to close button and expanded view
         infoView.findViewById(R.id.close).setOnClickListener(this);
 //        expandedView.setOnClickListener(this);
-        infoView.findViewById(R.id.app_logo).setOnClickListener(this);
+        infoView.findViewById(R.id.app_info).setOnClickListener(this);
+
+        //=================================================step icon======================================
+        stepView = LayoutInflater.from(this).inflate(R.layout.step_widget_layout, null);
+        stepCollapsedView = stepView.findViewById(R.id.layoutCollapsed);
+        stepExpandedView = stepView.findViewById(R.id.layoutExpanded);
+
+        stepIconParams.gravity = Gravity.TOP | Gravity.LEFT;
+
         stepView.findViewById(R.id.close_btn).setOnClickListener(this);
         stepExpandedView.setOnClickListener(this);
 
@@ -200,7 +193,7 @@ public class ScreenshotService extends Service implements View.OnClickListener{
                 stopSelf();
                 break;
 
-            case R.id.app_logo:
+            case R.id.app_info:
                 startCapture();
                 if(stepView.getWindowToken() != null){
                     mWindowManager.removeView(stepView);
@@ -425,7 +418,8 @@ public class ScreenshotService extends Service implements View.OnClickListener{
 
         private void processText() {
 
-            final TextView textView = stepView.findViewById(R.id.logo);
+            final TextView textStep = stepView.findViewById(R.id.step);
+            final TextView textExpandedStep = stepView.findViewById(R.id.stepExpanded);
             FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(latestBitmap);
             FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
                     .getOnDeviceTextRecognizer();
@@ -450,15 +444,18 @@ public class ScreenshotService extends Service implements View.OnClickListener{
                                             System.out.println(lineText + " - pos:(" + lineFrame.right + "," +lineFrame.top + ")");
                                             if (lineText.equalsIgnoreCase("my posts")) {
                                                 updateIconPosition(Math.round(lineFrame.right), Math.round(lineFrame.top));
-                                                textView.setText("my posts");
+                                                textStep.setText("my posts");
+                                                textExpandedStep.setText("my posts");
                                             }
                                             else if (lineText.equalsIgnoreCase("wechat out")) {
                                                 updateIconPosition(Math.round(lineFrame.right), Math.round(lineFrame.top));
-                                                textView.setText("wechat out");
+                                                textStep.setText("wechat out");
+                                                textExpandedStep.setText("wechat out");
                                             }
                                             else if (lineText.equalsIgnoreCase("new friends")) {
                                                 updateIconPosition(Math.round(lineFrame.right), Math.round(lineFrame.top));
-                                                textView.setText("new friends");
+                                                textStep.setText("new friends");
+                                                textExpandedStep.setText("new friends");
                                             }
                                             for (FirebaseVisionText.Element element : line.getElements()) {
                                                 String elementText = element.getText();

@@ -23,7 +23,7 @@
                 android:text=" 1 " android:textSize="20dp" android:textStyle="bold"
                 android:background="@drawable/shape"
                 android:textColor="#FFFFFF"
-                android:id="@+id/logo"
+                android:id="@+id/step"
                 android:layout_marginTop="8dp"/>
 
             <ImageView
@@ -51,7 +51,7 @@
                 android:text=" 1 " android:textSize="50dp" android:textStyle="bold"
                 android:background="@drawable/shape"
                 android:textColor="#FFFFFF"
-                android:id="@+id/logoExpanded"
+                android:id="@+id/stepExpanded"
                 android:layout_marginTop="8dp"/>
 
             <LinearLayout

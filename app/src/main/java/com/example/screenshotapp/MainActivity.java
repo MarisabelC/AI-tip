@@ -13,7 +13,6 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -26,16 +25,17 @@ public class MainActivity extends AppCompatActivity {
     int view = R.layout.activity_main;
     public final static int REQUEST_CODE = 10;
     private static final int REQUEST_SCREENSHOT=59706;
-    private MediaProjectionManager mgr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(view);
         requestPermission();
-        checkDrawOverlayPermission(this);
-        mgr=(MediaProjectionManager)getSystemService(MEDIA_PROJECTION_SERVICE);
 
+        //use for drawing overlay and screenshot
+        checkDrawOverlayPermission(this);
+        MediaProjectionManager mgr =(MediaProjectionManager)getSystemService(MEDIA_PROJECTION_SERVICE);
         startActivityForResult(mgr.createScreenCaptureIntent(),
                 REQUEST_SCREENSHOT);
     }

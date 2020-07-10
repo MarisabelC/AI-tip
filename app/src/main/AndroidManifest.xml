@@ -28,6 +28,7 @@
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
+
         <service
             android:name=".ScreenshotService"
             android:exported="true"

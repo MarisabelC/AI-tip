@@ -25,7 +25,7 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:id="@+id/app_logo"
+            android:id="@+id/app_info"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
