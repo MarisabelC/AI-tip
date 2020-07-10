@@ -11,6 +11,7 @@ Inside of application block
              android:name=".ScreenshotService"
              android:exported="true"
              android:foregroundServiceType="mediaProjection"
+
            meta-data
              android:name="com.google.firebase.ml.vision.DEPENDENCIES"
              android:value="ocr"  "
