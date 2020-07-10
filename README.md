@@ -1,16 +1,13 @@
 1 -  In AndroidManifest.xml
 -  Add Android permission :
 
-- (Media Projection - screenshot)
+android.permission.READ_EXTERNAL_STORAGE (Media Projection - screenshot)
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+android.permission.WRITE_EXTERNAL_STORAGE (Media Projection - screenshot)
 
-- (floating widget " overlay")
+android.permission.SYSTEM_ALERT_WINDOW (floating widget " overlay")
 
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-
+android.permission.FOREGROUND_SERVICE (Media Projection - screenshot)
 
 Inside of application block
 
@@ -26,9 +23,7 @@ Inside of application block
              android:value="ocr"/>
 
 2- In build.gradle (App level)
-- Add
-
- implementation 'com.karumi:dexter:5.0.0'
+Add  implementation 'com.karumi:dexter:5.0.0'
 
 
 3 - MainActivity.java
@@ -45,7 +40,6 @@ Inside of application block
 6 - create ScreenshotSevice.java
 
 - I used this tutorial to draw an overlay https://www.simplifiedcoding.net/android-floating-widget-tutorial/
-
 - when the info icon is pressed the step icon is created
 
 
