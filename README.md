@@ -7,13 +7,13 @@ android.permission.FOREGROUND_SERVICE (Media Projection - screenshot)
 
 Inside of application block
 
-- add      " <service
+- add      service
              android:name=".ScreenshotService"
              android:exported="true"
-             android:foregroundServiceType="mediaProjection"/>
-           <meta-data
+             android:foregroundServiceType="mediaProjection"
+           meta-data
              android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-             android:value="ocr" /> "
+             android:value="ocr"  "
 
 2- In build.gradle (App level)
 Add  implementation 'com.karumi:dexter:5.0.0'
