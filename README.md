@@ -7,11 +7,11 @@ android.permission.FOREGROUND_SERVICE (Media Projection - screenshot)
 
 Inside of application block
 
-- add      "<service
+- add      " <service
              android:name=".ScreenshotService"
              android:exported="true"
              android:foregroundServiceType="mediaProjection"/>
-          <meta-data
+           <meta-data
              android:name="com.google.firebase.ml.vision.DEPENDENCIES"
              android:value="ocr" /> "
 
