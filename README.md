@@ -8,6 +8,7 @@ android.permission.FOREGROUND_SERVICE (Media Projection - screenshot)
 Inside of application block
 
 - add
+
            <service
              android:name=".ScreenshotService"
              android:exported="true"
